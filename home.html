@@ -18,13 +18,16 @@
             background-color: #f8fafc;
             color: #334155;
             line-height: 1.6;
-            padding: 20px;
+            padding: 0px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        body.modal-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
         }
+
+
 
         header {
             text-align: center;
@@ -77,7 +80,7 @@
 
         .subtitle {
             font-size: 1.3rem;
-            opacity: 1;
+            opacity: 0.9;
             max-width: 600px;
             margin: 0 auto 25px;
         }
@@ -107,30 +110,56 @@
 
         .stat-label {
             font-size: 0.9rem;
-            opacity: 1;
+            opacity: 0.9;
         }
 
-
-
         .stat-item:nth-child(2) {
-            /* On Track - Green theme */
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            border: 1px solid linear-gradient(135deg, #10b981 0%, #059669 100%);
-            ;
         }
 
         .stat-item:nth-child(3) {
-            /* At Risk - Yellow/Orange theme */
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            border: 1px solid linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
         .stat-item:nth-child(4) {
-            /* Critical - Red theme */
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            border: 1px solid linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         }
 
+        .budget-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .budget-stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .budget-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .budget-stat-percentage {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .budget-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
 
         .controls {
             display: flex;
@@ -221,11 +250,6 @@
             color: #475569;
         }
 
-        .clear-filters-btn:active {
-            background: #cbd5e1;
-            transform: translateY(1px);
-        }
-
         .active-filters-indicator {
             font-size: 0.85rem;
             color: #64748b;
@@ -236,7 +260,7 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            gap: 10px;
         }
 
         .project-card {
@@ -247,7 +271,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            height: 520px;
+            height: 570px;
             border: 1px solid #e2e8f0;
             cursor: pointer;
         }
@@ -258,14 +282,13 @@
         }
 
         .card-header {
-            padding: 20px;
+            padding: 15px 10px;
             color: white;
             position: relative;
-            min-height: 100px;
-            /* Fixed minimum height */
+            min-height: 130px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: center;
         }
 
         .card-header.on-track {
@@ -285,24 +308,12 @@
         }
 
         .project-name {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
+            font-size: 1.1rem;
             font-weight: 600;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            line-height: 1.2;
             overflow: hidden;
-            min-height: 2.6em;
-            /* Ensures consistent height for 2 lines */
-        }
-
-        .client-name {
-            font-size: 1rem;
-            font-weight: 500;
-            opacity: 0.9;
-            min-height: 1.2em;
-            /* Ensures consistent height */
+            display: block;
+            word-wrap: break-word;
         }
 
         .card-body {
@@ -311,7 +322,6 @@
             display: flex;
             flex-direction: column;
         }
-
 
         .project-details {
             margin-bottom: 15px;
@@ -336,73 +346,15 @@
             text-align: right;
         }
 
-        .status-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .status-green {
-            background-color: #10b981;
-        }
-
-        .status-yellow {
-            background-color: #f59e0b;
-        }
-
-        .status-red {
-            background-color: #ef4444;
+        .amount-display {
+            font-weight: 600;
+            color: #059669;
         }
 
         .divider {
             height: 1px;
             background-color: #e2e8f0;
-            margin: 15px 0;
-        }
-
-        .progress-section {
-            margin-bottom: 6px;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .progress-label {
-            font-weight: 600;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .progress-value {
-            font-weight: 600;
-            color: #3b82f6;
-            font-size: 0.9rem;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background-color: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 6px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6 0%, #1e40af 100%);
-            border-radius: 4px;
-            transition: width 0.5s ease;
+            margin: 5px 0;
         }
 
         .funding-progress {
@@ -455,69 +407,60 @@
             margin-top: 5px;
         }
 
-        .progress-details {
-            font-size: 0.85rem;
-            color: #475569;
-            line-height: 1.5;
-            max-height: 60px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-details.expandable {
-            cursor: pointer;
-        }
-
-        .progress-details.expandable::after {
-            content: "...";
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background: white;
-            padding-left: 5px;
-        }
-
-        .progress-details.full-text {
-            max-height: none;
-            overflow: visible;
-        }
-
-        .progress-details.full-text::after {
-            display: none;
-        }
-
-        .card-body {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
         .card-footer {
             padding: 15px 20px;
-            /* Increased padding for better spacing */
             border-top: 1px solid #f1f5f9;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: #f8fafc;
             min-height: 60px;
-            /* Fixed footer height */
+            gap: 10px;
         }
 
         .project-code {
             font-weight: 600;
             color: #3b82f6;
             font-size: 0.85rem;
+            flex: 1;
+        }
+
+        .action-tracker-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .action-tracker-link {
+            text-decoration: none;
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(59, 130, 246, 0.1);
+            white-space: nowrap;
+        }
+
+        .action-tracker-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #1d4ed8;
+            transform: translateY(-1px);
         }
 
         .project-date {
             font-weight: 500;
             color: #64748b;
             font-size: 0.85rem;
+            flex: 1;
+            text-align: right;
         }
 
-        /* Modal Styles */
+        /* COMPLETELY REDESIGNED MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -525,27 +468,45 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             z-index: 1000;
-            overflow-y: auto;
             padding: 20px;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 40px auto;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 900px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            position: relative;
             animation: modalFadeIn 0.3s ease;
+            overflow-y: auto;
         }
 
         @keyframes modalFadeIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 0 auto;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            /* Animation properties - make sure these are included */
+            animation-name: modalSlideUp;
+            animation-duration: 0.4s;
+            animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+            animation-fill-mode: both;
+            /* Keeps end state */
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
 
             to {
@@ -556,11 +517,12 @@
 
         .modal-header {
             padding: 25px 30px;
-            border-radius: 12px 12px 0 0;
+            color: white;
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            color: white;
+            gap: 20px;
         }
 
         .modal-header.on-track {
@@ -579,103 +541,482 @@
             background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
         }
 
+        .modal-header-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .modal-title-container {
+            margin-bottom: 15px;
+        }
+
         .modal-title {
             font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            word-break: break-word;
         }
 
         .modal-subtitle {
             font-size: 1.1rem;
             opacity: 0.9;
+            font-weight: 400;
         }
 
         .close-modal {
             background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
-            width: 80px;
-            height: 33px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            flex-shrink: 0;
         }
 
         .close-modal:hover {
             background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .modal-tabs {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-tab {
+            padding: 16px 20px;
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .modal-tab:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .modal-tab.active {
+            color: #3b82f6;
+            background: white;
+            box-shadow: inset 0 -3px 0 #3b82f6;
         }
 
         .modal-body {
-            padding: 30px;
-            max-height: 70vh;
+            padding: 0;
+            flex: 1;
             overflow-y: auto;
+            background: white;
         }
 
-        .modal-section {
-            margin-bottom: 15px;
+        .modal-tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.3s ease;
         }
 
-        .modal-section-title {
-            font-size: 1.3rem;
+        .modal-tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-section {
+            margin-bottom: 30px;
+        }
+
+        .tab-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .tab-section-title {
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #1e293b;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .modal-detail-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .modal-detail {
-            margin-bottom: 15px;
-        }
-
-        .modal-detail-label {
-            font-weight: 600;
-            color: #64748b;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .modal-detail-value {
-            font-weight: 500;
-            color: #1e293b;
-        }
-
-        .modal-footer {
-            padding: 20px 30px;
-            border-top: 1px solid #e2e8f0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: #f8fafc;
-            border-radius: 0 0 12px 12px;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
         }
 
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #3b82f6;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
+        .tab-section-title i {
+            color: #3b82f6;
+            font-size: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 10px;
+            border-left: 4px solid #3b82f6;
             transition: all 0.3s ease;
         }
 
-        .project-link:hover {
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card.highlight {
+            border-left-color: #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .info-card.warning {
+            border-left-color: #f59e0b;
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+        }
+
+        .info-card.alert {
+            border-left-color: #ef4444;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .amount-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #059669;
+            margin-top: 5px;
+        }
+
+        .amount-subvalue {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        /* Progress bar removed from current progress section */
+        .no-progress-bar {
+            margin-top: 10px;
+        }
+
+        .funding-progress-modal {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #bae6fd;
+        }
+
+        .funding-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .funding-stat {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .funding-stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .funding-stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .timeline-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .timeline-track {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: -8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #3b82f6;
+            transform: translateX(-50%);
+        }
+
+        .timeline-marker.start {
+            left: 0;
+            border-color: #10b981;
+        }
+
+        .timeline-marker.end {
+            left: 100%;
+            border-color: #ef4444;
+        }
+
+        .timeline-marker.current {
+            left: 50%;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .milestone-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .milestone-icon {
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .milestone-content {
+            flex: 1;
+        }
+
+        .milestone-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .milestone-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Updated Modal Footer Styles */
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .footer-code {
+            font-weight: 600;
+            color: #3b82f6;
+            font-size: 0.9rem;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .modal-action-tracker-container {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .modal-action-tracker-link {
+            text-decoration: none;
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: rgba(59, 130, 246, 0.1);
+            white-space: nowrap;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .modal-action-tracker-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #1d4ed8;
+            transform: translateY(-1px);
+            text-decoration: none;
+        }
+
+        .modal-action-tracker-link.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+        }
+
+        .modal-project-date {
+            font-weight: 500;
+            color: #64748b;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            flex: 1;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .footer-action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            flex: 1;
+            justify-content: center;
+            min-width: 140px;
+        }
+
+        .action-btn.primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .action-btn.primary:hover {
             background: #2563eb;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .action-btn.secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+        .action-btn.secondary:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
         }
 
         .loading {
@@ -717,154 +1058,228 @@
             border-top: 1px solid #e2e8f0;
         }
 
-        /* Financial amounts styling */
-        .amount-display {
-            font-weight: 600;
-            color: #059669;
+        /* Scroll to top button */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            z-index: 999;
+            transition: all 0.3s ease;
+            align-items: center;
+            justify-content: center;
         }
 
-        .amount-row {
-            background: #f0f9ff;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            border-left: 3px solid #3b82f6;
+        .scroll-top-btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Budget stats specific */
-        .budget-stat-percentage {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 5px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
+        /* RESPONSIVE DESIGN - Mobile First */
+        @media (max-width: 1200px) {
 
-        .budget-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .budget-stat-item {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-        }
-
-        .budget-stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .budget-stat-label {
-            font-size: 0.9rem;
-            opacity: 10;
-            margin-bottom: 5px;
-        }
-
-        .budget-stat-subtitle {
-            font-size: 0.75rem;
-            opacity: 1;
-        }
-
-        .conversion-note {
-            font-size: 0.8rem;
-            opacity: 1;
-            margin-top: 10px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 1024px) {
-            .projects-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 1000;
+                padding: 15px;
+                animation: modalFadeIn 0.3s ease;
+                overflow-y: auto;
+                /* Force modal to top */
+                align-items: flex-start;
+                justify-content: flex-start;
             }
 
-            .budget-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .modal-detail-grid {
-                grid-template-columns: 1fr;
+            .modal-content {
+                background: white;
+                margin: 20px auto;
+                /* Changed from 0 auto to add some top margin */
+                border-radius: 16px;
+                max-width: 95%;
+                max-height: 95vh;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                position: relative;
+                animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                /* Ensure it's positioned properly */
+                top: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .budget-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .search-box {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .filter-section {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            select {
-                flex: 1;
-                min-width: unset;
-            }
-
-            .clear-filters-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .stats,
-            .budget-stats {
-                gap: 15px;
-            }
-
-            .stat-item,
-            .budget-stat-item {
-                padding: 15px 20px;
-                min-width: 120px;
+            .modal {
+                padding: 10px;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
             }
 
             .modal-content {
-                width: 95%;
-                margin: 20px auto;
+                max-height: 95vh;
+                border-radius: 12px;
+                margin: auto;
             }
 
             .modal-header {
                 padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+
+            .modal-subtitle {
+                font-size: 1rem;
+            }
+
+            .close-modal {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .modal-tabs {
+                flex-wrap: wrap;
+            }
+
+            .modal-tab {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+                flex: 1;
+                min-width: calc(50% - 2px);
+                justify-content: center;
+            }
+
+            .modal-tab i {
+                margin-right: 5px;
             }
 
             .modal-body {
+                padding: 0;
+            }
+
+            .modal-tab-content {
                 padding: 20px;
+            }
+
+            .tab-section {
+                margin-bottom: 25px;
+            }
+
+            .tab-section-title {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .info-card {
+                padding: 15px;
+            }
+
+            .info-value {
+                font-size: 1rem;
+            }
+
+            .amount-value {
+                font-size: 1.3rem;
+            }
+
+            .funding-stats {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .funding-stat {
+                padding: 12px;
+            }
+
+            .funding-stat-value {
+                font-size: 1.2rem;
+            }
+
+            .timeline-container {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .timeline-track {
+                margin: 0 15px;
+            }
+
+            .timeline-labels {
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 20px;
+            }
+
+            .milestone-item {
+                padding: 12px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .milestone-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .modal-footer {
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .footer-actions {
+                order: 1;
+                width: 100%;
+            }
+
+            .footer-action-buttons {
+                order: 2;
+                width: 100%;
+                justify-content: center;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             body {
                 padding: 10px;
             }
 
             header {
-                padding: 30px 15px;
+                padding: 25px 15px;
+                margin-bottom: 25px;
             }
 
             h1 {
@@ -872,24 +1287,61 @@
             }
 
             .subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat-item {
+                min-width: calc(50% - 10px);
+                padding: 15px;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .budget-stats {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .budget-stat-item {
+                padding: 15px;
             }
 
             .controls {
                 padding: 15px;
+                gap: 15px;
+            }
+
+            .search-box {
+                min-width: unset;
+            }
+
+            .search-box input {
+                padding: 12px 15px 12px 40px;
+                font-size: 0.95rem;
             }
 
             .filter-section {
                 flex-direction: column;
+                width: 100%;
                 gap: 10px;
             }
 
             select {
                 width: 100%;
+                min-width: unset;
+                padding: 12px 15px;
             }
 
             .clear-filters-btn {
                 width: 100%;
+                justify-content: center;
+                padding: 12px 15px;
             }
 
             .projects-grid {
@@ -898,8 +1350,209 @@
             }
 
             .project-card {
-                height: 500px;
-                min-height: 550px;
+                height: auto;
+                min-height: 500px;
+            }
+
+            .modal {
+                padding: 5px;
+            }
+
+            .modal-content {
+                max-height: 100vh;
+                border-radius: 10px;
+            }
+
+            .modal-header {
+                padding: 15px;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+                margin-right: 40px;
+            }
+
+            .modal-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .modal-tabs {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                min-height: 95px;
+            }
+
+            .modal-tab {
+                min-width: 100%;
+                padding: 10px 8px;
+                font-size: 0.85rem;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .modal-tab i {
+                margin-right: 5px;
+            }
+
+            .modal-tab-content {
+                padding: 15px;
+            }
+
+            .tab-section-title {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+
+            .info-card {
+                padding: 12px;
+            }
+
+            .info-label {
+                font-size: 0.8rem;
+            }
+
+            .info-value {
+                font-size: 0.95rem;
+            }
+
+            .amount-value {
+                font-size: 1.2rem;
+            }
+
+            .milestone-item {
+                padding: 10px;
+            }
+
+            .modal-footer {
+                padding: 12px;
+            }
+
+            .footer-actions {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .footer-code,
+            .modal-project-date {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+                min-width: 70px;
+            }
+
+            .modal-action-tracker-link {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+                min-width: 110px;
+            }
+
+            .action-btn {
+                font-size: 0.85rem;
+                padding: 10px 15px;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .modal-title {
+                font-size: 1.2rem;
+            }
+
+            .modal-tabs {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-tab {
+                min-width: 100%;
+            }
+
+            .footer-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-code,
+            .modal-project-date,
+            .modal-action-tracker-link {
+                min-width: calc(33.333% - 8px);
+                font-size: 0.75rem;
+                padding: 4px 6px;
+            }
+
+            .modal-action-tracker-link {
+                min-width: calc(50% - 8px);
+            }
+
+            .footer-action-buttons {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .project-card:hover {
+                transform: none;
+            }
+
+            .project-card:active {
+                transform: scale(0.98);
+            }
+
+            .modal-tab,
+            .action-btn,
+            .clear-filters-btn,
+            select {
+                min-height: 44px;
+            }
+
+            .search-box input {
+                min-height: 44px;
+                font-size: 16px;
+            }
+
+            .modal-tabs {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* Prevent zoom on iOS input focus */
+        @media screen and (max-width: 768px) {
+
+            input,
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .modal {
+                position: static;
+                display: block !important;
+                background: white;
+                padding: 0;
+            }
+
+            .modal-content {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+                max-height: none;
+            }
+
+            .modal-header {
+                background: #f0f0f0 !important;
+                color: #333 !important;
+            }
+
+            .close-modal,
+            .action-buttons,
+            .modal-tabs {
+                display: none !important;
             }
         }
     </style>
@@ -934,7 +1587,6 @@
                 <div class="budget-stat-item">
                     <div class="budget-stat-value" id="totalBudget">$0</div>
                     <div class="budget-stat-percentage" id="totalBudgetPercentage">100%</div>
-
                     <div class="budget-stat-label">Total Contract Value</div>
                 </div>
                 <div class="budget-stat-item">
@@ -953,8 +1605,6 @@
                     <div class="budget-stat-label">Total Outstanding</div>
                 </div>
             </div>
-
-
         </header>
 
         <div class="controls">
@@ -990,147 +1640,375 @@
                 Loading corporate projects...
             </div>
         </div>
-
     </div>
 
-    <!-- Modal for project details -->
+    <!-- Redesigned Modal -->
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <div class="modal-header" id="modalHeader">
-                <div>
-                    <h2 class="modal-title" id="modalProjectName">Project Name</h2>
-                    <p class="modal-subtitle" id="modalClientName">Client Name</p>
+                <div class="modal-header-content">
+                    <div class="modal-title-container">
+                        <h2 class="modal-title" id="modalProjectName">Project Name</h2>
+                        <p class="modal-subtitle" id="modalClientName">Client Name</p>
+                    </div>
                 </div>
                 <button class="close-modal">&times;</button>
             </div>
+
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-tab="overview">
+                    <i class="fas fa-eye"></i>
+                    Overview
+                </button>
+                <button class="modal-tab" data-tab="financial">
+                    <i class="fas fa-chart-line"></i>
+                    Financial
+                </button>
+                <button class="modal-tab" data-tab="timeline">
+                    <i class="fas fa-calendar-alt"></i>
+                    Timeline
+                </button>
+                <button class="modal-tab" data-tab="details">
+                    <i class="fas fa-info-circle"></i>
+                    Details
+                </button>
+            </div>
+
             <div class="modal-body">
-                <div class="modal-section">
-                    <h3 class="modal-section-title">Project Overview</h3>
-                    <div class="modal-detail-grid">
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Project Code</div>
-                            <div class="modal-detail-value" id="modalProjectCode">N/A</div>
+                <!-- Overview Tab -->
+                <div class="modal-tab-content active" id="overviewTab">
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-bullseye"></i>
+                            Project Summary
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-card highlight">
+                                <div class="info-label">
+                                    <i class="fas fa-user-tie"></i>
+                                    Lead
+                                </div>
+                                <div class="info-value" id="modalLead">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-handshake"></i>
+                                    Partner
+                                </div>
+                                <div class="info-value" id="modalPartner">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-user-check"></i>
+                                    Assigned To
+                                </div>
+                                <div class="info-value" id="modalAssignedTo">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    Donor
+                                </div>
+                                <div class="info-value" id="modalDonorName">N/A</div>
+                            </div>
                         </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Sector</div>
-                            <div class="modal-detail-value" id="modalSector">N/A</div>
+                    </div>
+
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Progress
+                        </h3>
+                        <div class="info-card no-progress-bar">
+                            <div class="info-label">
+                                <i class="fas fa-tasks"></i>
+                                Current Progress
+                            </div>
+                            <div class="info-value" id="modalProgress">N/A</div>
                         </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Country</div>
-                            <div class="modal-detail-value" id="modalCountry">N/A</div>
+                    </div>
+
+                    <div class="funding-progress-modal">
+                        <h3 class="tab-section-title" style="border-bottom: none; margin-bottom: 15px;">
+                            <i class="fas fa-money-check-alt"></i>
+                            Funding Status
+                        </h3>
+                        <div class="funding-stats">
+                            <div class="funding-stat">
+                                <div class="funding-stat-value" id="modalContractAmountShort">$0</div>
+                                <div class="funding-stat-label">Contract Value</div>
+                            </div>
+                            <div class="funding-stat">
+                                <div class="funding-stat-value" id="modalFundReceivedShort">$0</div>
+                                <div class="funding-stat-label">Received</div>
+                            </div>
+                            <div class="funding-stat">
+                                <div class="funding-stat-value" id="modalFundClaimedShort">$0</div>
+                                <div class="funding-stat-label">Claimed</div>
+                            </div>
+                            <div class="funding-stat">
+                                <div class="funding-stat-value" id="modalTotalDueShort">$0</div>
+                                <div class="funding-stat-label">Outstanding</div>
+                            </div>
                         </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Status</div>
-                            <div class="modal-detail-value" id="modalStatus">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Awarded Year</div>
-                            <div class="modal-detail-value" id="modalAwardedYear">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Donor Name</div>
-                            <div class="modal-detail-value" id="modalDonorName">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Lead</div>
-                            <div class="modal-detail-value" id="modalLead">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Partner</div>
-                            <div class="modal-detail-value" id="modalPartner">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Assigned To</div>
-                            <div class="modal-detail-value" id="modalAssignedTo">N/A</div>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span class="progress-label">Funding Progress</span>
+                                <span class="progress-percentage" id="modalFundingProgress">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="modalFundingProgressBar" style="width: 0%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal-section">
-                    <h3 class="modal-section-title">Financial Information</h3>
-                    <div class="modal-detail-grid">
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Contract Amount (MSL)</div>
-                            <div class="modal-detail-value amount-display" id="modalContractAmount">N/A</div>
+                <!-- Financial Tab -->
+                <div class="modal-tab-content" id="financialTab">
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            Financial Breakdown
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-card highlight">
+                                <div class="info-label">
+                                    <i class="fas fa-file-contract"></i>
+                                    Contract Amount (MSL)
+                                </div>
+                                <div class="amount-value" id="modalContractAmountFull">N/A</div>
+                                <div class="amount-subvalue">
+                                    USD: <span id="modalContractAmountUSD">$0</span>
+                                </div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    Funds Claimed
+                                </div>
+                                <div class="amount-value" id="modalFundClaimedFull">N/A</div>
+                                <div class="amount-subvalue">
+                                    USD: <span id="modalFundClaimedUSD">$0</span>
+                                </div>
+                            </div>
+                            <div class="info-card highlight">
+                                <div class="info-label">
+                                    <i class="fas fa-money-check"></i>
+                                    Funds Received
+                                </div>
+                                <div class="amount-value" id="modalFundReceivedFull">N/A</div>
+                                <div class="amount-subvalue">
+                                    USD: <span id="modalFundReceivedUSD">$0</span>
+                                </div>
+                            </div>
+                            <div class="info-card warning">
+                                <div class="info-label">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Total Outstanding
+                                </div>
+                                <div class="amount-value" id="modalTotalDueFull">N/A</div>
+                                <div class="amount-subvalue">
+                                    USD: <span id="modalTotalDueUSD">$0</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Fund Claimed</div>
-                            <div class="modal-detail-value amount-display" id="modalFundClaimed">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Fund Received</div>
-                            <div class="modal-detail-value amount-display" id="modalFundReceived">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Total Due</div>
-                            <div class="modal-detail-value amount-display" id="modalTotalDue">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">USD Equivalent (Total)</div>
-                            <div class="modal-detail-value amount-display" id="modalTotalUSD">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Funding Progress</div>
-                            <div class="modal-detail-value amount-display" id="modalFundingProgress">N/A</div>
+                    </div>
+
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Financial Overview
+                        </h3>
+                        <div class="info-card">
+                            <div class="info-label">
+                                <i class="fas fa-percentage"></i>
+                                Funding Efficiency
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-header">
+                                    <span class="progress-label">Claimed vs Received</span>
+                                    <span class="progress-percentage" id="modalClaimEfficiency">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="modalClaimEfficiencyBar"
+                                        style="width: 0%; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal-section">
-                    <h3 class="modal-section-title">Timeline & Status</h3>
-                    <div class="modal-detail-grid">
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Start Date</div>
-                            <div class="modal-detail-value" id="modalStartDate">N/A</div>
+                <!-- Timeline Tab -->
+                <div class="modal-tab-content" id="timelineTab">
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            Project Timeline
+                        </h3>
+                        <div class="timeline-container">
+                            <div class="timeline-track">
+                                <div class="timeline-marker start" title="Start Date"></div>
+                                <div class="timeline-marker current" title="Current"></div>
+                                <div class="timeline-marker end" title="End Date"></div>
+                            </div>
+                            <div class="timeline-labels">
+                                <span id="modalStartDateLabel">Start Date</span>
+                                <span id="modalCurrentDateLabel">Today</span>
+                                <span id="modalEndDateLabel">End Date</span>
+                            </div>
                         </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">End Date</div>
-                            <div class="modal-detail-value" id="modalEndDate">N/A</div>
+                    </div>
+
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-flag-checkered"></i>
+                            Key Dates
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    Start Date
+                                </div>
+                                <div class="info-value" id="modalStartDateFull">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-calendar-minus"></i>
+                                    End Date
+                                </div>
+                                <div class="info-value" id="modalEndDateFull">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-file-signature"></i>
+                                    Contract Signed
+                                </div>
+                                <div class="info-value" id="modalContractDateFull">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-history"></i>
+                                    Last Status Update
+                                </div>
+                                <div class="info-value" id="modalStatusDateFull">N/A</div>
+                            </div>
                         </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Contract Signed Date</div>
-                            <div class="modal-detail-value" id="modalContractDate">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Status Date</div>
-                            <div class="modal-detail-value" id="modalStatusDate">N/A</div>
-                        </div>
-                        <div class="modal-detail">
-                            <div class="modal-detail-label">Current Progress</div>
-                            <div class="modal-detail-value" id="modalProgress">N/A</div>
+                    </div>
+
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-mountain"></i>
+                            Next Milestone
+                        </h3>
+                        <div class="milestone-item">
+                            <div class="milestone-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div class="milestone-content">
+                                <div class="milestone-title" id="modalNextMilestoneTitle">Next Milestone</div>
+                                <div class="milestone-desc" id="modalNextMilestoneDesc">No upcoming milestones</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal-section">
-                    <h3 class="modal-section-title">Project Details</h3>
-                    <div class="modal-detail">
-                        <div class="modal-detail-label">Key Risks / Challenges</div>
-                        <div class="modal-detail-value" id="modalKeyRisks">N/A</div>
+                <!-- Details Tab -->
+                <div class="modal-tab-content" id="detailsTab">
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Risks & Challenges
+                        </h3>
+                        <div class="info-card alert">
+                            <div class="info-label">
+                                <i class="fas fa-shield-alt"></i>
+                                Key Risks / Challenges
+                            </div>
+                            <div class="info-value" id="modalKeyRisks">No risks identified</div>
+                        </div>
                     </div>
-                    <div class="modal-detail">
-                        <div class="modal-detail-label">Next Milestone</div>
-                        <div class="modal-detail-value" id="modalNextMilestone">N/A</div>
+
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-sticky-note"></i>
+                            Additional Information
+                        </h3>
+                        <div class="info-card">
+                            <div class="info-label">
+                                <i class="fas fa-comment-alt"></i>
+                                Remarks
+                            </div>
+                            <div class="info-value" id="modalRemarks">No remarks</div>
+                        </div>
                     </div>
-                    <div class="modal-detail">
-                        <div class="modal-detail-label">Remarks</div>
-                        <div class="modal-detail-value" id="modalRemarks">N/A</div>
+
+                    <div class="tab-section">
+                        <h3 class="tab-section-title">
+                            <i class="fas fa-database"></i>
+                            Project Metadata
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-hashtag"></i>
+                                    Project Code
+                                </div>
+                                <div class="info-value" id="modalDetailProjectCode">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-calendar-star"></i>
+                                    Awarded Year
+                                </div>
+                                <div class="info-value" id="modalDetailAwardedYear">N/A</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-label">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Last Updated
+                                </div>
+                                <div class="info-value" id="modalLastUpdated">N/A</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Updated Modal Footer -->
             <div class="modal-footer">
-                <div class="project-code" id="modalFooterCode">Project Code</div>
-                <a href="#" class="project-link" id="modalProjectLink" target="_blank">
-                    <i class="fas fa-external-link-alt"></i>
-                    View Project Website
-                </a>
+                <div class="footer-content">
+                    <div class="footer-actions">
+                        <span class="footer-code" id="modalFooterCode">PROJ-001</span>
+                        <div class="modal-action-tracker-container">
+                            <a href="#" class="modal-action-tracker-link" id="modalActionTrackerLink" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                Action Tracker
+                            </a>
+                        </div>
+                        <span class="modal-project-date" id="modalAwardedYear">2024</span>
+                    </div>
+
+                    <div class="footer-action-buttons">
+                        <a href="#" class="action-btn primary" id="modalProjectLink" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project Portal
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // API URL
-        const apiUrl = 'https://api.sheetbest.com/sheets/5b373687-9204-4dbd-893f-3be5c33555c0/tabs/Dashboard%20-%20Ongoing%20Prj';
+        // Supabase Configuration - Fixed API Key
+        const SUPABASE_CONFIG = {
+            URL: "https://woklvqytrxauxosurmyv.supabase.co",
+            API_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indva2x2cXl0cnhhdXhvc3VybXl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwNDI1NjgsImV4cCI6MjA3OTYxODU2OH0.e0Uaxxk9cdvVqBJYZcXwdtWb4WsJf1IIaclFZ7Ac0lQ"
+        };
+
+        const TABLE_NAME = 'projects';
 
         // DOM Elements
         const projectsContainer = document.getElementById('projectsContainer');
@@ -1148,256 +2026,224 @@
         const totalFundClaimedEl = document.getElementById('totalFundClaimed');
         const totalFundReceivedEl = document.getElementById('totalFundReceived');
         const totalDueEl = document.getElementById('totalDue');
-
-        // Modal Elements
         const projectModal = document.getElementById('projectModal');
-        const modalHeader = document.getElementById('modalHeader');
-        const modalProjectName = document.getElementById('modalProjectName');
-        const modalClientName = document.getElementById('modalClientName');
-        const modalProjectCode = document.getElementById('modalProjectCode');
-        const modalSector = document.getElementById('modalSector');
-        const modalCountry = document.getElementById('modalCountry');
-        const modalContractAmount = document.getElementById('modalContractAmount');
-        const modalFundClaimed = document.getElementById('modalFundClaimed');
-        const modalFundReceived = document.getElementById('modalFundReceived');
-        const modalTotalDue = document.getElementById('modalTotalDue');
-        const modalTotalUSD = document.getElementById('modalTotalUSD');
-        const modalFundingProgress = document.getElementById('modalFundingProgress');
-        const modalAwardedYear = document.getElementById('modalAwardedYear');
-        const modalDonorName = document.getElementById('modalDonorName');
-        const modalLead = document.getElementById('modalLead');
-        const modalPartner = document.getElementById('modalPartner');
-        const modalAssignedTo = document.getElementById('modalAssignedTo');
-        const modalStartDate = document.getElementById('modalStartDate');
-        const modalEndDate = document.getElementById('modalEndDate');
-        const modalContractDate = document.getElementById('modalContractDate');
-        const modalStatus = document.getElementById('modalStatus');
-        const modalStatusDate = document.getElementById('modalStatusDate');
-        const modalProgress = document.getElementById('modalProgress');
-        const modalKeyRisks = document.getElementById('modalKeyRisks');
-        const modalNextMilestone = document.getElementById('modalNextMilestone');
-        const modalRemarks = document.getElementById('modalRemarks');
-        const modalFooterCode = document.getElementById('modalFooterCode');
-        const modalProjectLink = document.getElementById('modalProjectLink');
         const closeModalBtn = document.querySelector('.close-modal');
 
-        // Store projects data
-        let projects = [];
-        let filteredProjects = [];
-
         // Currency conversion rates (to USD)
-        // Using approximate exchange rates - you can update these as needed
         const conversionRates = {
             'USD': 1,
             '$': 1,
             'US$': 1,
-            'PKR': 0.0036,      // 1 PKR = 0.0036 USD (approx)
-            'INR': 0.012,       // 1 INR = 0.012 USD (approx)
-            'EUR': 1.08,        // 1 EUR = 1.08 USD (approx)
+            'PKR': 0.0036,
+            'INR': 0.012,
+            'EUR': 1.08,
             '€': 1.08,
-            'GBP': 1.27,        // 1 GBP = 1.27 USD (approx)
+            'GBP': 1.27,
             '£': 1.27,
-            'CAD': 0.73,        // 1 CAD = 0.73 USD (approx)
-            'AUD': 0.66,        // 1 AUD = 0.66 USD (approx)
-            'JPY': 0.0067,      // 1 JPY = 0.0067 USD (approx)
-            'CNY': 0.14,        // 1 CNY = 0.14 USD (approx)
-            'CHF': 1.12,        // 1 CHF = 1.12 USD (approx)
-            'AED': 0.27,        // 1 AED = 0.27 USD (approx)
-            'SAR': 0.27,        // 1 SAR = 0.27 USD (approx)
-            'BDT': 0.0091,      // 1 BDT = 0.0091 USD (approx)
-            'LKR': 0.0031,      // 1 LKR = 0.0031 USD (approx)
-            'NPR': 0.0075,      // 1 NPR = 0.0075 USD (approx)
-            'MMK': 0.00048,     // 1 MMK = 0.00048 USD (approx)
-            'IDR': 0.000064,    // 1 IDR = 0.000064 USD (approx)
-            'THB': 0.027,       // 1 THB = 0.027 USD (approx)
-            'PHP': 0.018,       // 1 PHP = 0.018 USD (approx)
-            'VND': 0.000041,    // 1 VND = 0.000041 USD (approx)
-            'MYR': 0.21,        // 1 MYR = 0.21 USD (approx)
-            'SGD': 0.74,        // 1 SGD = 0.74 USD (approx)
-            'HKD': 0.13,        // 1 HKD = 0.13 USD (approx)
-            'KRW': 0.00075,     // 1 KRW = 0.00075 USD (approx)
-            'BRL': 0.20,        // 1 BRL = 0.20 USD (approx)
-            'MXN': 0.059,       // 1 MXN = 0.059 USD (approx)
-            'RUB': 0.011,       // 1 RUB = 0.011 USD (approx)
-            'ZAR': 0.055,       // 1 ZAR = 0.055 USD (approx)
-            'NGN': 0.00067,     // 1 NGN = 0.00067 USD (approx)
-            'EGP': 0.032,       // 1 EGP = 0.032 USD (approx)
-            'KES': 0.0068,      // 1 KES = 0.0068 USD (approx)
-            'GHS': 0.078,       // 1 GHS = 0.078 USD (approx)
-            'ETB': 0.018        // 1 ETB = 0.018 USD (approx)
+            'CAD': 0.73,
+            'AUD': 0.66,
+            'JPY': 0.0067,
+            'CNY': 0.14,
+            'CHF': 1.12,
+            'AED': 0.27,
+            'SAR': 0.27,
+            'BDT': 0.0091,
+            'LKR': 0.0031,
+            'NPR': 0.0075,
+            'MMK': 0.00048,
+            'IDR': 0.000064,
+            'THB': 0.027,
+            'PHP': 0.018,
+            'VND': 0.000041,
+            'MYR': 0.21,
+            'SGD': 0.74,
+            'HKD': 0.13,
+            'KRW': 0.00075,
+            'BRL': 0.20,
+            'MXN': 0.059,
+            'RUB': 0.011,
+            'ZAR': 0.055,
+            'NGN': 0.00067,
+            'EGP': 0.032,
+            'KES': 0.0068,
+            'GHS': 0.078,
+            'ETB': 0.018
         };
 
-        // Function to detect currency from string
+        // Store projects data
+        let allData = [];
+        let filteredData = [];
+
+        // Helper functions
         function detectCurrency(amountString) {
             if (!amountString) return 'USD';
 
             const upperStr = amountString.toUpperCase();
 
-            // Check for US$ (needs to be before checking for $ alone)
             if (upperStr.includes('US$')) return 'USD';
-
-            // Check for other currency patterns
             if (upperStr.includes('PKR') || upperStr.includes('RS')) return 'PKR';
             if (upperStr.includes('INR') || upperStr.includes('₹')) return 'INR';
             if (upperStr.includes('EUR') || upperStr.includes('€')) return 'EUR';
             if (upperStr.includes('GBP') || upperStr.includes('£')) return 'GBP';
             if (upperStr.includes('BDT') || upperStr.includes('৳')) return 'BDT';
-
-            // Check for $ last (after checking for US$)
-            if (upperStr.includes('$')) return 'USD';
-
-            // If no currency symbol but has numbers, assume USD
             if (/\d/.test(amountString)) return 'USD';
 
-            return 'USD'; // Default fallback
+            return 'USD';
         }
+
         function extractAndConvertToUSD(amountString) {
-            if (!amountString || amountString.trim() === '') return 0;
+            if (!amountString) return 0;
 
-            const amount = amountString.trim();
-            let totalUSD = 0;
-
-            const singleAmountMatch = amount.match(/^([^0-9]*?)([\d,.]+)$/);
-            if (singleAmountMatch && !amount.toLowerCase().includes('and')) {
-                const [, currencyPart, numericPart] = singleAmountMatch;
-                const numericValue = parseFloat(numericPart.replace(/,/g, '')) || 0;
-                const currency = detectCurrency(currencyPart.trim() || amount);
-                const rate = conversionRates[currency] || 1;
-                return numericValue * rate;
-            }
-
-            // FIX: Split on "and" with any whitespace (including newlines) around it
-            const parts = amount.split(/\s+and\s+/i);
-
-            parts.forEach(part => {
-                const trimmedPart = part.trim();
-                if (!trimmedPart) return;
-                console.log("USD Trimmed part", trimmedPart);
-
-                // Extract numeric value - improved regex
-                const numericMatch = trimmedPart.match(/([\d,.]+)/);
-                if (!numericMatch) return;
-
-                console.log("USD Numeric Match", numericMatch);
-                const numericString = numericMatch[1].replace(/,/g, '');
-                const numericValue = parseFloat(numericString) || 0;
-
-                if (numericValue > 0) {
-                    // Detect currency - pass the entire part
-                    const currency = detectCurrency(trimmedPart);
-
-                    // Get conversion rate
-                    const rate = conversionRates[currency] || 1;
-
-                    totalUSD += numericValue * rate;
+            try {
+                if (!isNaN(amountString) && amountString !== '') {
+                    return parseFloat(amountString);
                 }
-            });
 
-            return totalUSD;
+                const amount = amountString.toString().trim();
+                if (amount === '') return 0;
+
+                const singleAmountMatch = amount.match(/^([^0-9]*?)([\d,.]+)$/);
+                if (singleAmountMatch && !amount.toLowerCase().includes('and')) {
+                    const [, currencyPart, numericPart] = singleAmountMatch;
+                    const numericValue = parseFloat(numericPart.replace(/,/g, '')) || 0;
+                    const currency = detectCurrency(currencyPart.trim() || amount);
+                    const rate = conversionRates[currency] || 1;
+                    return numericValue * rate;
+                }
+
+                let totalUSD = 0;
+                const parts = amount.split(/\s+and\s+/i);
+
+                parts.forEach(part => {
+                    const trimmedPart = part.trim();
+                    if (!trimmedPart) return;
+
+                    const numericMatch = trimmedPart.match(/([\d,.]+)/);
+                    if (!numericMatch) return;
+
+                    const numericString = numericMatch[1].replace(/,/g, '');
+                    const numericValue = parseFloat(numericString) || 0;
+
+                    if (numericValue > 0) {
+                        const currency = detectCurrency(trimmedPart);
+                        const rate = conversionRates[currency] || 1;
+                        totalUSD += numericValue * rate;
+                    }
+                });
+
+                return totalUSD;
+            } catch (error) {
+                console.error('Error converting amount to USD:', amountString, error);
+                return 0;
+            }
         }
+
         function calculateFundingProgress(contractAmountUSD, fundReceivedUSD) {
             if (!contractAmountUSD || contractAmountUSD <= 0) return 0;
             if (!fundReceivedUSD || fundReceivedUSD <= 0) return 0;
 
-            // Calculate percentage
             const percentage = (fundReceivedUSD / contractAmountUSD) * 100;
-
-            // Cap at 100%
             return Math.min(percentage, 100);
         }
 
-        // Function to parse date in "dd MMM yyyy" format (e.g., "28 Feb 2023")
         function parseDate(dateString) {
             if (!dateString || dateString.trim() === '') return null;
 
             try {
-                const parts = dateString.trim().split(' ');
-                if (parts.length < 3) return null;
+                const isoDate = new Date(dateString);
+                if (!isNaN(isoDate.getTime())) {
+                    return isoDate;
+                }
 
-                const day = parseInt(parts[0]);
-                const monthStr = parts[1].toLowerCase();
-                const year = parseInt(parts[2]);
+                const date = new Date(dateString);
+                if (!isNaN(date.getTime())) {
+                    return date;
+                }
 
-                const monthMap = {
-                    'jan': 0, 'feb': 1, 'mar': 2, 'apr': 3, 'may': 4, 'jun': 5,
-                    'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
-                };
-
-                const month = monthMap[monthStr.substring(0, 3)];
-                if (month === undefined) return null;
-
-                return new Date(year, month, day);
+                return null;
             } catch (e) {
                 console.error('Error parsing date:', dateString, e);
                 return null;
             }
         }
 
-        // Function to parse amount strings with mixed currencies for display
         function parseAmountString(amountString) {
-            if (!amountString || amountString.trim() === '') return 'N/A';
+            if (!amountString || amountString.toString().trim() === '') return 'N/A';
 
-            const amount = amountString.trim();
+            try {
+                const amount = amountString.toString().trim();
 
-            // Check for "and" separated amounts
-            if (amount.toLowerCase().includes(' and ')) {
-                const parts = amount.split(/ and /i);
-                return parts.map(part => {
-                    const trimmedPart = part.trim();
-                    // Try to format each part with currency
-                    const currencyMatch = trimmedPart.match(/^([^\d]+)?([\d,.]+)$/);
-                    if (currencyMatch) {
-                        const [, currency, value] = currencyMatch;
-                        return (currency ? currency.trim() + ' ' : '') + formatWithCommas(value.trim());
-                    }
-                    return formatWithCommas(trimmedPart);
-                }).join(' + ');
-            }
-
-            // Handle single amount
-            const currencyMatch = amount.match(/^([^\d]+)?([\d,.]+)$/);
-            if (currencyMatch) {
-                const [, currency, value] = currencyMatch;
-                return (currency ? currency.trim() + ' ' : '$ ') + formatWithCommas(value.trim());
-            }
-
-            return formatWithCommas(amount);
-        }
-        function formatAmountForCard(amountString) {
-            if (!amountString || amountString.trim() === '') return 'N/A';
-
-            const amount = amountString.trim();
-
-            if (amount.toLowerCase().includes(' and ')) {
-                const parts = amount.split(/ and /i);
-                const firstAmount = parts[0].trim();
-
-                const currencyMatch = firstAmount.match(/^(PKR|US\$|\$|€|£|¥|₹|Rs|AED|SAR)/i);
-                if (currencyMatch) {
-                    const currency = currencyMatch[1];
-                    const value = formatWithCommas(firstAmount.substring(currencyMatch[0].length).trim());
-
-                    if (parts.length > 1) {
-                        return `${currency} ${value}<br><span style="font-size: 0.75rem; color: #64748b;">+ ${parts.length - 1} more</span>`;
-                    }
-                    return `${currency} ${value}`;
+                if (!isNaN(amount) && amount !== '') {
+                    return '$ ' + formatWithCommas(parseFloat(amount).toFixed(2));
                 }
-            }
 
-            return parseAmountString(amount);
+                if (amount.toLowerCase().includes(' and ')) {
+                    const parts = amount.split(/ and /i);
+                    return parts.map(part => {
+                        const trimmedPart = part.trim();
+                        const currencyMatch = trimmedPart.match(/^([^\d]+)?([\d,.]+)$/);
+                        if (currencyMatch) {
+                            const [, currency, value] = currencyMatch;
+                            return (currency ? currency.trim() + ' ' : '') + formatWithCommas(value.trim());
+                        }
+                        return formatWithCommas(trimmedPart);
+                    }).join(' + ');
+                }
+
+                const currencyMatch = amount.match(/^([^\d]+)?([\d,.]+)$/);
+                if (currencyMatch) {
+                    const [, currency, value] = currencyMatch;
+                    return (currency ? currency.trim() + ' ' : '$ ') + formatWithCommas(value.trim());
+                }
+
+                return formatWithCommas(amount);
+            } catch (error) {
+                console.error('Error parsing amount string:', amountString, error);
+                return 'N/A';
+            }
         }
 
-        // Helper function to add commas to numbers
+        function formatAmountForCard(amountString) {
+            if (!amountString || amountString.toString().trim() === '') return 'N/A';
+
+            try {
+                const amount = amountString.toString().trim();
+
+                if (!isNaN(amount) && amount !== '') {
+                    return '$ ' + formatWithCommas(parseFloat(amount).toFixed(2));
+                }
+
+                if (amount.toLowerCase().includes(' and ')) {
+                    const parts = amount.split(/ and /i);
+                    const firstAmount = parts[0].trim();
+
+                    const currencyMatch = firstAmount.match(/^(PKR|US\$|\$|€|£|¥|₹|Rs|AED|SAR)/i);
+                    if (currencyMatch) {
+                        const currency = currencyMatch[1];
+                        const value = formatWithCommas(firstAmount.substring(currencyMatch[0].length).trim());
+
+                        if (parts.length > 1) {
+                            return `${currency} ${value}<br><span style="font-size: 0.75rem; color: #64748b;">+ ${parts.length - 1} more</span>`;
+                        }
+                        return `${currency} ${value}`;
+                    }
+                }
+
+                return parseAmountString(amount);
+            } catch (error) {
+                console.error('Error formatting amount for card:', amountString, error);
+                return 'N/A';
+            }
+        }
+
         function formatWithCommas(text) {
             if (!text) return text;
 
-            // Handle numbers with M suffix (millions)
             const millionMatch = text.match(/^([\d,.]+)\s*M$/i);
             if (millionMatch) {
                 const numberPart = millionMatch[1].replace(/,/g, '');
                 const num = parseFloat(numberPart);
                 if (!isNaN(num)) {
-                    // Format with 1 decimal place and add commas
                     const formatted = new Intl.NumberFormat('en-US', {
                         minimumFractionDigits: 1,
                         maximumFractionDigits: 1
@@ -1406,13 +2252,11 @@
                 }
             }
 
-            // Handle numbers with K suffix (thousands)
             const thousandMatch = text.match(/^([\d,.]+)\s*K$/i);
             if (thousandMatch) {
                 const numberPart = thousandMatch[1].replace(/,/g, '');
                 const num = parseFloat(numberPart);
                 if (!isNaN(num)) {
-                    // Format with 1 decimal place and add commas
                     const formatted = new Intl.NumberFormat('en-US', {
                         minimumFractionDigits: 1,
                         maximumFractionDigits: 1
@@ -1421,67 +2265,74 @@
                 }
             }
 
-            // Handle regular numbers
-            return text.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            const cleaned = text.toString().replace(/,/g, '');
+            const num = parseFloat(cleaned);
+            if (!isNaN(num)) {
+                return new Intl.NumberFormat('en-US', {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                }).format(num);
+            }
+
+            return text;
         }
 
-        // Function to check if project is ongoing
         function isProjectOngoing(project) {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            const contractDate = parseDate(project.contractSignedDate || project.startDate);
+            const contractDate = parseDate(project.contract_start_date || project.startDate);
             if (!contractDate) return false;
 
-            const endDate = parseDate(project.endDate);
+            const endDate = parseDate(project.end_date);
             if (!endDate) return true;
 
             return contractDate <= today && (endDate >= today || isSameDay(endDate, today));
         }
 
-        // Function to check if project is overdue
         function isProjectOverdue(project) {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            const endDate = parseDate(project.endDate);
+            const endDate = parseDate(project.end_date);
             if (!endDate) return false;
 
             return endDate < today && !isSameDay(endDate, today);
         }
 
-        // Helper function to check if two dates are the same day
         function isSameDay(date1, date2) {
+            if (!date1 || !date2) return false;
             return date1.getFullYear() === date2.getFullYear() &&
                 date1.getMonth() === date2.getMonth() &&
                 date1.getDate() === date2.getDate();
         }
 
-        // Function to extract status from status data
         function extractStatus(statusData) {
             let statusEmoji = '';
             let statusDate = '';
 
             if (typeof statusData === 'string') {
-                if (statusData.includes('🟢') || statusData.includes('🟡') || statusData.includes('🔴')) {
-                    if (statusData.includes('🟢')) statusEmoji = '🟢';
-                    else if (statusData.includes('🟡')) statusEmoji = '🟡';
-                    else if (statusData.includes('🔴')) statusEmoji = '🔴';
+                const cleanStatus = statusData.trim();
 
-                    const dateMatch = statusData.match(/\d{1,2} \w+ \d{4}/);
-                    if (dateMatch) {
-                        statusDate = dateMatch[0];
-                    }
+                if (cleanStatus.includes('🟢')) statusEmoji = '🟢';
+                else if (cleanStatus.includes('🟡')) statusEmoji = '🟡';
+                else if (cleanStatus.includes('🔴')) statusEmoji = '🔴';
+                else if (cleanStatus.toLowerCase().includes('on track') || cleanStatus.toLowerCase().includes('green')) statusEmoji = '🟢';
+                else if (cleanStatus.toLowerCase().includes('at risk') || cleanStatus.toLowerCase().includes('yellow')) statusEmoji = '🟡';
+                else if (cleanStatus.toLowerCase().includes('critical') || cleanStatus.toLowerCase().includes('red')) statusEmoji = '🔴';
+                else statusEmoji = cleanStatus;
+
+                const dateMatch = cleanStatus.match(/\d{1,2}\/\d{1,2}\/\d{4}/) ||
+                    cleanStatus.match(/\d{1,2}-\d{1,2}-\d{4}/) ||
+                    cleanStatus.match(/\d{1,2} \w+ \d{4}/);
+                if (dateMatch) {
+                    statusDate = dateMatch[0];
                 }
             } else if (typeof statusData === 'object' && statusData !== null) {
-                for (const key in statusData) {
-                    if (key.match(/\d{1,2} \w+ \d{4}/) &&
-                        (statusData[key] === '🟢' || statusData[key] === '🟡' || statusData[key] === '🔴')) {
-                        statusDate = key;
-                        statusEmoji = statusData[key];
-                        break;
-                    }
-                }
+                const statusStr = JSON.stringify(statusData);
+                if (statusStr.includes('🟢')) statusEmoji = '🟢';
+                else if (statusStr.includes('🟡')) statusEmoji = '🟡';
+                else if (statusStr.includes('🔴')) statusEmoji = '🔴';
             }
 
             return {
@@ -1491,115 +2342,74 @@
             };
         }
 
-        // Fetch data from API
+        function generateActionTrackerURL(project) {
+            if (project.links) {
+                return `${project.links}/action-tracker`;
+            }
+            return null;
+        }
+
+        // Fetch data from Supabase
         async function fetchProjects() {
             try {
-                const response = await fetch(apiUrl);
+                projectsContainer.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>
+                        Loading corporate projects from Supabase...
+                    </div>
+                `;
+
+                const response = await fetch(`${SUPABASE_CONFIG.URL}/rest/v1/${TABLE_NAME}?select=*&order=sl.asc`, {
+                    headers: {
+                        'apikey': SUPABASE_CONFIG.API_KEY,
+                        'Authorization': `Bearer ${SUPABASE_CONFIG.API_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
                 if (!response.ok) {
-                    throw new Error('Failed to fetch data');
+                    throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
                 }
 
                 const data = await response.json();
 
-                if (data.rows) {
-                    projects = data.rows.map((row, index) => {
-                        const project = {
-                            sl: index + 1,
-                            awardedYear: row["Awarded Year"] || row["awarded_year"] || '',
-                            country: row["Country"] || row["country"] || '',
-                            donorName: row["Donor Name"] || row["donor_name"] || '',
-                            clientName: row["Client Name"] || row["client_name"] || '',
-                            projectName: row["Project Name"] || row["project_name"] || '',
-                            sector: row["Sector"] || row["sector"] || '',
-                            lead: row["Lead"] || row["lead"] || '',
-                            partner: row["Partner"] || row["partner"] || '',
-                            projectCode: row["Project Code"] || row["project_code"] || '',
-                            assignedTo: row["Assigned To"] || row["assigned_to"] || '',
-                            contractSignedDate: row["Contract Signed Date"] || row["contract_signed_date"] || row["Start Date"] || row["start_date"] || '',
-                            startDate: row["Start Date"] || row["start_date"] || '',
-                            endDate: row["End Date"] || row["end_date"] || '',
-                            currentProgress: row["Current Progress"] || row["current_progress"] || '',
-                            keyRisks: row["Key Risks / Challenges"] || row["key_risks"] || '',
-                            nextMilestone: row["Next Milestone"] || row["next_milestone"] || '',
-                            remark: row["Remark"] || row["remark"] || '',
-                            contractAmount: row["Contract Amount (MSL)"] || row["contract_amount"] || '',
-                            fundClaimed: row["Fund Claimed"] || row["fund_claimed"] || '',
-                            fundReceived: row["Fund Received"] || row["fund_received"] || '',
-                            totalDue: row["Total Due"] || row["total_due"] || '',
-                            link: row["Link"] || row["link"] || null
-                        };
-
-                        // Parse status field
-                        let statusData = row["1 December 2025"] || row["Status"] || row["status"] || '';
-                        const statusInfo = extractStatus(statusData);
-
-                        project.statusEmoji = statusInfo.emoji;
-                        project.statusText = statusInfo.text;
-                        project.statusDate = statusInfo.date;
-
-                        // Calculate project status
-                        project.isOngoing = isProjectOngoing(project);
-                        project.isOverdue = isProjectOverdue(project);
-
-                        // Extract and convert amounts to USD
-                        project.usdContractAmount = extractAndConvertToUSD(project.contractAmount);
-
-                        project.usdFundClaimed = extractAndConvertToUSD(project.fundClaimed);
-                        project.usdFundReceived = extractAndConvertToUSD(project.fundReceived);
-                        project.usdTotalDue = extractAndConvertToUSD(project.totalDue);
-
-                        // Calculate total USD for this project
-                        project.totalUSD = project.usdContractAmount;
-
-                        // Calculate funding progress percentage
-                        project.fundingProgressPercentage = calculateFundingProgress(
-                            project.usdContractAmount,
-                            project.usdFundReceived
-                        );
-
-                        return project;
+                if (data && Array.isArray(data)) {
+                    const sortedData = [...data].sort((a, b) => {
+                        const slA = parseFloat(a.sl) || 0;
+                        const slB = parseFloat(b.sl) || 0;
+                        return slA - slB;
                     });
-                } else if (Array.isArray(data)) {
-                    const headers = data[0] || [];
-                    const rows = data.slice(1);
 
-                    projects = rows.map((row, index) => {
+                    allData = sortedData.map((row, index) => {
                         const project = {
-                            sl: index + 1,
-                            awardedYear: row[1] || '',
-                            country: row[2] || '',
-                            donorName: row[3] || '',
-                            clientName: row[4] || '',
-                            projectName: row[5] || '',
-                            sector: row[6] || '',
-                            lead: row[7] || '',
-                            partner: row[8] || '',
-                            projectCode: row[9] || '',
-                            assignedTo: row[10] || '',
-                            contractSignedDate: row[11] || '',
-                            startDate: row[11] || '',
-                            endDate: row[12] || '',
-                            currentProgress: row[14] || '',
-                            keyRisks: row[15] || '',
-                            nextMilestone: row[16] || '',
-                            contractAmount: row[17] || '',
-                            fundClaimed: row[18] || '',
-                            fundReceived: row[19] || '',
-                            totalDue: row[20] || '',
-                            remark: row[21] || '',
-                            link: row[22] || null
+                            sl: row.sl || index + 1,
+                            awarded_year: row.awarded_year || '',
+                            country: row.country || '',
+                            donor_name: row.donor_name || '',
+                            client_name: row.client_name || '',
+                            project_name: row.project_name || '',
+                            sector: row.sector || '',
+                            lead: row.lead || '',
+                            partner: row.partner || '',
+                            project_code: row.project_code || '',
+                            assigned_to: row.assigned_to || '',
+                            contract_start_date: row.contract_start_date || '',
+                            end_date: row.end_date || '',
+                            status: row.status || '',
+                            current_progress: row.current_progress || '',
+                            key_risk_challenges: row.key_risk_challenges || '',
+                            next_milestone: row.next_milestone || '',
+                            contract_amount: row.contract_amount || '',
+                            fund_claimed: row.fund_claimed || '',
+                            fund_received: row.fund_received || '',
+                            total_due: row.total_due || '',
+                            remark: row.remark || '',
+                            links: row.links || null,
+                            sheet_source: row.sheet_source || '',
+                            last_synced: row.last_synced || ''
                         };
 
-                        let statusData = '';
-                        for (const key in row) {
-                            if (key.match(/\d{1,2} \w+ \d{4}/)) {
-                                statusData = row[key];
-                                break;
-                            }
-                        }
-
-                        const statusInfo = extractStatus(statusData);
-
+                        const statusInfo = extractStatus(project.status);
                         project.statusEmoji = statusInfo.emoji;
                         project.statusText = statusInfo.text;
                         project.statusDate = statusInfo.date;
@@ -1607,62 +2417,57 @@
                         project.isOngoing = isProjectOngoing(project);
                         project.isOverdue = isProjectOverdue(project);
 
-                        // Extract and convert amounts to USD
-                        project.usdContractAmount = extractAndConvertToUSD(project.contractAmount);
+                        project.usdContractAmount = extractAndConvertToUSD(project.contract_amount);
+                        project.usdFundClaimed = extractAndConvertToUSD(project.fund_claimed);
+                        project.usdFundReceived = extractAndConvertToUSD(project.fund_received);
+                        project.usdTotalDue = extractAndConvertToUSD(project.total_due);
 
-                        project.usdFundClaimed = extractAndConvertToUSD(project.fundClaimed);
-                        project.usdFundReceived = extractAndConvertToUSD(project.fundReceived);
-                        project.usdTotalDue = extractAndConvertToUSD(project.totalDue);
-
-                        // Calculate total USD for this project
                         project.totalUSD = project.usdContractAmount;
 
-                        // Calculate funding progress percentage
                         project.fundingProgressPercentage = calculateFundingProgress(
                             project.usdContractAmount,
                             project.usdFundReceived
                         );
 
+                        project.actionTrackerURL = generateActionTrackerURL(project);
+
                         return project;
                     });
+
+                    console.log(`Fetched ${allData.length} projects from Supabase`);
                 } else {
-                    throw new Error('Unexpected data format from API');
+                    throw new Error('Unexpected data format from Supabase');
                 }
 
-                // Update statistics
-                updateStatistics(projects);
-
-                // Populate filter dropdowns
+                updateStatistics(allData);
                 populateFilters();
-
-                // Display projects
-                filteredProjects = [...projects];
-                displayProjects(filteredProjects);
+                filteredData = [...allData];
+                displayProjects(filteredData);
                 updateActiveFiltersIndicator();
 
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching data from Supabase:', error);
                 projectsContainer.innerHTML = `
                     <div class="error">
                         <h3>Error Loading Corporate Projects</h3>
-                        <p>Unable to fetch project data. Please try again later.</p>
+                        <p>Unable to fetch project data from Supabase. Please try again later.</p>
                         <p style="margin-top: 15px; font-size: 0.9rem;">Error details: ${error.message}</p>
-                        <p style="margin-top: 10px; font-size: 0.9rem;">Check browser console for more details.</p>
+                        <button onclick="fetchProjects()" style="margin-top: 15px; padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            <i class="fas fa-redo"></i> Retry
+                        </button>
                     </div>
                 `;
             }
         }
+
         function updateBudgetPercentages(totalContract, totalClaimed, totalReceived, totalDue) {
-            // Get percentage display elements
             const totalBudgetPercentageEl = document.getElementById('totalBudgetPercentage');
             const totalFundClaimedPercentageEl = document.getElementById('totalFundClaimedPercentage');
             const totalFundReceivedPercentageEl = document.getElementById('totalFundReceivedPercentage');
             const totalDuePercentageEl = document.getElementById('totalDuePercentage');
 
-            // Always show total contract value as 100%
             totalBudgetPercentageEl.textContent = "100%";
 
-            // Calculate percentages relative to total contract value
             if (totalContract > 0) {
                 const claimedPercentage = (totalClaimed / totalContract) * 100;
                 const receivedPercentage = (totalReceived / totalContract) * 100;
@@ -1671,38 +2476,25 @@
                 totalFundClaimedPercentageEl.textContent = `${claimedPercentage.toFixed(1)}%`;
                 totalFundReceivedPercentageEl.textContent = `${receivedPercentage.toFixed(1)}%`;
                 totalDuePercentageEl.textContent = `${duePercentage.toFixed(1)}%`;
+
+                totalFundClaimedPercentageEl.style.color = claimedPercentage >= 70 ? '#10b981' :
+                    claimedPercentage >= 50 ? '#f59e0b' : '#ef4444';
+
+                totalFundReceivedPercentageEl.style.color = receivedPercentage >= 70 ? '#10b981' :
+                    receivedPercentage >= 50 ? '#f59e0b' : '#ef4444';
+
+                totalDuePercentageEl.style.color = duePercentage <= 20 ? '#10b981' :
+                    duePercentage <= 50 ? '#f59e0b' : '#ef4444';
             } else {
                 totalFundClaimedPercentageEl.textContent = "0%";
                 totalFundReceivedPercentageEl.textContent = "0%";
                 totalDuePercentageEl.textContent = "0%";
             }
-
-            updatePercentageColors(totalFundClaimedPercentageEl, totalFundReceivedPercentageEl, totalDuePercentageEl);
         }
 
-        // Function to add color coding to percentages
-        // Function to add color coding to percentages
-        function updatePercentageColors(claimedEl, receivedEl, dueEl) {
-            // Parse percentage values
-            const claimedPercent = parseFloat(claimedEl.textContent);
-            const receivedPercent = parseFloat(receivedEl.textContent);
-            const duePercent = parseFloat(dueEl.textContent);
-
-            // Set colors based on percentage ranges
-            claimedEl.style.color = claimedPercent >= 70 ? '#10b981' :
-                claimedPercent >= 50 ? '#f59e0b' : '#ef4444';
-
-            receivedEl.style.color = receivedPercent >= 70 ? '#10b981' :
-                receivedPercent >= 50 ? '#f59e0b' : '#ef4444';
-
-            dueEl.style.color = duePercent <= 20 ? '#10b981' :
-                duePercent <= 50 ? '#f59e0b' : '#ef4444';
-        }
-        // Update statistics in the header
         function updateStatistics(projects) {
             totalProjectsEl.textContent = projects.length;
 
-            // Count projects by status
             const onTrackCount = projects.filter(p => p.statusEmoji === '🟢').length;
             const atRiskCount = projects.filter(p => p.statusEmoji === '🟡').length;
             const criticalCount = projects.filter(p => p.statusEmoji === '🔴').length;
@@ -1711,7 +2503,6 @@
             atRiskProjectsEl.textContent = atRiskCount;
             criticalProjectsEl.textContent = criticalCount;
 
-            // Calculate budget statistics in USD
             let totalContractAmountUSD = 0;
             let totalFundClaimedUSD = 0;
             let totalFundReceivedUSD = 0;
@@ -1724,21 +2515,19 @@
                 totalDueAmountUSD += project.usdTotalDue || 0;
             });
 
-            // Format and display budget statistics
             totalBudgetEl.textContent = formatCurrency(totalContractAmountUSD);
             totalFundClaimedEl.textContent = formatCurrency(totalFundClaimedUSD);
             totalFundReceivedEl.textContent = formatCurrency(totalFundReceivedUSD);
             totalDueEl.textContent = formatCurrency(totalDueAmountUSD);
+
             updateBudgetPercentages(totalContractAmountUSD, totalFundClaimedUSD, totalFundReceivedUSD, totalDueAmountUSD);
         }
 
-        // Function to format currency
         function formatCurrency(amount) {
             if (amount === 0) return '$0';
 
             if (amount >= 1000000) {
                 const millions = amount / 1000000;
-                // Format with commas for thousands
                 const formatted = new Intl.NumberFormat('en-US', {
                     minimumFractionDigits: 1,
                     maximumFractionDigits: 1
@@ -1746,7 +2535,6 @@
                 return '$' + formatted + 'M';
             } else if (amount >= 1000) {
                 const thousands = amount / 1000;
-                // Format with commas for thousands
                 const formatted = new Intl.NumberFormat('en-US', {
                     minimumFractionDigits: 1,
                     maximumFractionDigits: 1
@@ -1760,10 +2548,9 @@
             }
         }
 
-        // Populate filter dropdowns with unique values
         function populateFilters() {
-            const sectors = [...new Set(projects.map(p => p.sector).filter(Boolean))];
-            const countries = [...new Set(projects.map(p => p.country).filter(Boolean))];
+            const sectors = [...new Set(allData.map(p => p.sector).filter(Boolean))];
+            const countries = [...new Set(allData.map(p => p.country).filter(Boolean))];
 
             while (sectorFilter.options.length > 1) {
                 sectorFilter.remove(1);
@@ -1787,7 +2574,6 @@
             });
         }
 
-        // Update active filters indicator
         function updateActiveFiltersIndicator() {
             const searchTerm = searchInput.value;
             const statusValue = statusFilter.value;
@@ -1818,22 +2604,16 @@
             }
         }
 
-        // Clear all filters
         function clearAllFilters() {
-            // Reset all filter values
             searchInput.value = '';
             statusFilter.value = '';
             sectorFilter.value = '';
             countryFilter.value = '';
 
-            // Reset filtered projects to all projects
-            filteredProjects = [...projects];
-
-            // Update display
-            displayProjects(filteredProjects);
+            filteredData = [...allData];
+            displayProjects(filteredData);
             updateActiveFiltersIndicator();
 
-            // Show a brief confirmation
             const originalText = clearFiltersBtn.innerHTML;
             clearFiltersBtn.innerHTML = '<i class="fas fa-check"></i> Filters Cleared';
             clearFiltersBtn.style.background = '#10b981';
@@ -1848,13 +2628,260 @@
             }, 1500);
         }
 
-        // Helper function to truncate text
-        function truncateText(text, maxLength) {
-            if (!text || text.length <= maxLength) return text;
-            return text.substring(0, maxLength) + '...';
+        function getProgressPercentage(progressText) {
+            if (!progressText) return 0;
+
+            const percentageMatch = progressText.match(/(\d+(?:\.\d+)?)%/);
+            if (percentageMatch) {
+                return parseFloat(percentageMatch[1]);
+            }
+
+            const fractionMatch = progressText.match(/(\d+)\/(\d+)/);
+            if (fractionMatch) {
+                const numerator = parseFloat(fractionMatch[1]);
+                const denominator = parseFloat(fractionMatch[2]);
+                if (denominator > 0) {
+                    return (numerator / denominator) * 100;
+                }
+            }
+
+            return 0;
         }
 
-        // Display projects in the grid
+        function calculateTimelineProgress(startDateStr, endDateStr) {
+            const start = parseDate(startDateStr);
+            const end = parseDate(endDateStr);
+            const today = new Date();
+
+            if (!start || !end) return { progress: 0, overdue: false };
+
+            const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+            const daysPassed = Math.ceil((today - start) / (1000 * 60 * 60 * 24));
+
+            let progress = (daysPassed / totalDays) * 100;
+            progress = Math.max(0, Math.min(100, progress));
+
+            const overdue = today > end;
+
+            return { progress, overdue };
+        }
+
+        function initModalTabs() {
+            const tabs = document.querySelectorAll('.modal-tab');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Show corresponding content
+                    document.querySelectorAll('.modal-tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(`${tabId}Tab`).classList.add('active');
+                });
+            });
+        }
+
+        function scrollToTopForGoogleSites() {
+            // Multiple approaches for Google Sites compatibility
+            const scrollOptions = {
+                top: 0,
+                behavior: 'smooth'
+            };
+
+            // Try different methods
+            const scrollMethods = [
+                () => window.scrollTo(scrollOptions),
+                () => window.scrollTo(0, 0),
+                () => document.documentElement.scrollTo(scrollOptions),
+                () => document.body.scrollTo(scrollOptions),
+                () => {
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }
+            ];
+
+            // Try parent window if in iframe
+            if (window.parent && window.parent !== window) {
+                try {
+                    window.parent.scrollTo(scrollOptions);
+                    window.parent.scrollTo(0, 0);
+                } catch (e) {
+                    console.log("Can't access parent window for scrolling");
+                }
+            }
+
+            // Try all methods with delays
+            scrollMethods.forEach((method, index) => {
+                setTimeout(() => {
+                    try {
+                        method();
+                    } catch (e) {
+                        // Ignore errors and try next method
+                    }
+                }, index * 100);
+            });
+        }
+
+        function openProjectModal(project) {
+            // Set basic info
+            document.getElementById('modalProjectName').textContent = project.project_name || 'Unnamed Project';
+            document.getElementById('modalClientName').textContent = project.client_name || 'N/A';
+            document.getElementById('modalLead').textContent = project.lead || 'N/A';
+            document.getElementById('modalPartner').textContent = project.partner || 'N/A';
+            document.getElementById('modalAssignedTo').textContent = project.assigned_to || 'N/A';
+            document.getElementById('modalDonorName').textContent = project.donor_name || 'N/A';
+            document.getElementById('modalAwardedYear').textContent = project.awarded_year || 'N/A';
+            document.getElementById('modalFooterCode').textContent = project.project_code || 'N/A';
+
+            // Set modal header class based on status
+            let headerClass = 'default';
+            if (project.statusEmoji === '🟢') headerClass = 'on-track';
+            else if (project.statusEmoji === '🟡') headerClass = 'at-risk';
+            else if (project.statusEmoji === '🔴') headerClass = 'critical';
+            document.getElementById('modalHeader').className = 'modal-header ' + headerClass;
+
+            // Set progress information (without progress bar)
+            const progressText = project.current_progress || '';
+            document.getElementById('modalProgress').textContent = progressText || 'No progress information available';
+
+            // Set financial information
+            document.getElementById('modalContractAmountShort').textContent = formatCurrency(project.usdContractAmount);
+            document.getElementById('modalFundClaimedShort').textContent = formatCurrency(project.usdFundClaimed);
+            document.getElementById('modalFundReceivedShort').textContent = formatCurrency(project.usdFundReceived);
+            document.getElementById('modalTotalDueShort').textContent = formatCurrency(project.usdTotalDue);
+
+            // Set full financial information
+            document.getElementById('modalContractAmountFull').innerHTML = parseAmountString(project.contract_amount || '');
+            document.getElementById('modalFundClaimedFull').innerHTML = parseAmountString(project.fund_claimed || '');
+            document.getElementById('modalFundReceivedFull').innerHTML = parseAmountString(project.fund_received || '');
+            document.getElementById('modalTotalDueFull').innerHTML = parseAmountString(project.total_due || '');
+
+            // Set USD equivalents
+            document.getElementById('modalContractAmountUSD').textContent = formatCurrency(project.usdContractAmount);
+            document.getElementById('modalFundClaimedUSD').textContent = formatCurrency(project.usdFundClaimed);
+            document.getElementById('modalFundReceivedUSD').textContent = formatCurrency(project.usdFundReceived);
+            document.getElementById('modalTotalDueUSD').textContent = formatCurrency(project.usdTotalDue);
+
+            // Calculate and set funding progress
+            const fundingProgress = project.fundingProgressPercentage || 0;
+            document.getElementById('modalFundingProgress').textContent = `${fundingProgress.toFixed(1)}%`;
+            document.getElementById('modalFundingProgressBar').style.width = `${fundingProgress}%`;
+
+            // Calculate and set claim efficiency
+            const claimEfficiency = project.usdContractAmount > 0 ?
+                (project.usdFundReceived / project.usdContractAmount) * 100 : 0;
+            document.getElementById('modalClaimEfficiency').textContent = `${claimEfficiency.toFixed(1)}%`;
+            document.getElementById('modalClaimEfficiencyBar').style.width = `${claimEfficiency}%`;
+
+            // Set timeline information
+            const startDate = project.contract_start_date || '';
+            const endDate = project.end_date || '';
+            document.getElementById('modalStartDateFull').textContent = startDate || 'N/A';
+            document.getElementById('modalEndDateFull').textContent = endDate || 'N/A';
+            document.getElementById('modalContractDateFull').textContent = project.contract_start_date || 'N/A';
+            document.getElementById('modalStatusDateFull').textContent = project.statusDate || 'N/A';
+
+            // Update timeline labels
+            document.getElementById('modalStartDateLabel').textContent = startDate || 'Start Date';
+            document.getElementById('modalEndDateLabel').textContent = endDate || 'End Date';
+
+            // Calculate timeline progress
+            const timelineProgress = calculateTimelineProgress(startDate, endDate);
+            const currentMarker = document.querySelector('.timeline-marker.current');
+            if (currentMarker) {
+                currentMarker.style.left = `${timelineProgress.progress}%`;
+            }
+
+            // Set next milestone
+            document.getElementById('modalNextMilestoneTitle').textContent = 'Next Milestone';
+            document.getElementById('modalNextMilestoneDesc').textContent = project.next_milestone || 'No upcoming milestones scheduled';
+
+            // Set risks and remarks
+            document.getElementById('modalKeyRisks').textContent = project.key_risk_challenges || 'No risks identified';
+            document.getElementById('modalRemarks').textContent = project.remark || 'No remarks';
+
+            // Set metadata
+            document.getElementById('modalDetailProjectCode').textContent = project.project_code || 'N/A';
+            document.getElementById('modalDetailAwardedYear').textContent = project.awarded_year || 'N/A';
+
+            // Set last updated
+            document.getElementById('modalLastUpdated').textContent = project.last_synced ?
+                new Date(project.last_synced).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                }) : 'N/A';
+
+            // Set action tracker link
+            const actionTrackerLink = document.getElementById('modalActionTrackerLink');
+            if (project.actionTrackerURL) {
+                actionTrackerLink.href = project.actionTrackerURL;
+                actionTrackerLink.classList.remove('disabled');
+            } else {
+                actionTrackerLink.href = '#';
+                actionTrackerLink.classList.add('disabled');
+            }
+
+            // Set project link
+            const projectLink = document.getElementById('modalProjectLink');
+            if (project.links) {
+                projectLink.href = project.links;
+                projectLink.classList.remove('disabled');
+            } else {
+                projectLink.href = '#';
+                projectLink.classList.add('disabled');
+            }
+
+            // Reset to overview tab
+            document.querySelectorAll('.modal-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.modal-tab-content').forEach(content => content.classList.remove('active'));
+
+            const overviewTab = document.querySelector('.modal-tab[data-tab="overview"]');
+            const overviewContent = document.getElementById('overviewTab');
+
+            if (overviewTab && overviewContent) {
+                overviewTab.classList.add('active');
+                overviewContent.classList.add('active');
+            }
+
+            // Show modal
+            projectModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                if (projectModal.scrollIntoView) {
+                    projectModal.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+                // Also try to scroll the modal content to top
+                const modalBody = document.querySelector('.modal-body');
+                if (modalBody) {
+                    modalBody.scrollTop = 0;
+                }
+            }, 50);
+        }
+
+        function getStatusColor(status, opacity = 1) {
+            if (status === '🟢') return `rgba(16, 185, 129, ${opacity})`;
+            if (status === '🟡') return `rgba(245, 158, 11, ${opacity})`;
+            if (status === '🔴') return `rgba(239, 68, 68, ${opacity})`;
+            return `rgba(100, 116, 139, ${opacity})`;
+        }
+
+        function getStatusText(status) {
+            if (status === '🟢') return 'On Track';
+            if (status === '🟡') return 'At Risk';
+            if (status === '🔴') return 'Critical';
+            return status || 'Unknown';
+        }
+
         function displayProjects(projectsToDisplay) {
             if (projectsToDisplay.length === 0) {
                 projectsContainer.innerHTML = `
@@ -1868,7 +2895,6 @@
                     </div>
                 `;
 
-                // Add event listener to clear filters button in no-results message
                 const clearFiltersNoResultsBtn = document.getElementById('clearFiltersNoResults');
                 if (clearFiltersNoResultsBtn) {
                     clearFiltersNoResultsBtn.addEventListener('click', clearAllFilters);
@@ -1877,196 +2903,133 @@
             }
 
             projectsContainer.innerHTML = projectsToDisplay.map(project => {
-                let progressDetails = project.currentProgress || 'N/A';
-                let isExpandable = false;
-
-                if (progressDetails.length > 100) {
-                    progressDetails = truncateText(progressDetails, 100);
-                    isExpandable = true;
-                }
-
-                const progressPercentage = getProgressPercentage(project.currentProgress);
-                const showOverdue = project.isOverdue;
-                const formattedContractAmount = formatAmountForCard(project.contractAmount || '');
-
-                // Format funding progress
+                const formattedContractAmount = formatAmountForCard(project.contract_amount || '');
                 const fundingProgress = project.fundingProgressPercentage || 0;
-                const fundingProgressFormatted = fundingProgress > 0 ?
-                    `${fundingProgress.toFixed(1)}%` : '0%';
+                const fundingProgressFormatted = fundingProgress > 0 ? `${fundingProgress.toFixed(1)}%` : '0%';
 
-                // Determine header class based on status
                 let headerClass = 'default';
                 if (project.statusEmoji === '🟢') headerClass = 'on-track';
                 else if (project.statusEmoji === '🟡') headerClass = 'at-risk';
                 else if (project.statusEmoji === '🔴') headerClass = 'critical';
 
+                const hasActionTracker = project.actionTrackerURL !== null;
+
                 return `
-                <div class="project-card" data-project-id="${project.sl}">
-                    <div class="card-header ${headerClass}">
-                        <h3 class="project-name">${project.projectName || 'Unnamed Project'}</h3>
-                        <p class="client-name">${project.clientName || 'N/A'}</p>
-                        ${showOverdue ? '<div style="position: absolute; bottom: 10px; right: 10px; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">OVERDUE</div>' : ''}
-                    </div>
-                    <div class="card-body">
-                        <div class="project-details">
-                            <div class="detail-row">
-                                <span class="detail-label">Sector</span>
-                                <span class="detail-value">${project.sector || 'N/A'}</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Country</span>
-                                <span class="detail-value">${project.country || 'N/A'}</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Contract Amount</span>
-                                <span class="detail-value amount-display">${formattedContractAmount}</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">USD Equivalent</span>
-                                <span class="detail-value amount-display">${formatCurrency(project.usdContractAmount)}</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Status</span>
-                                <div class="detail-value">
-                                    <div class="status-container">
-                                        <span>${project.statusText || getStatusText(project.statusEmoji)}</span>
+                    <div class="project-card" data-project-id="${project.sl}">
+                        <div class="card-header ${headerClass}">
+                            <h3 class="project-name">${project.project_name || 'Unnamed Project'}</h3>
+                            ${project.isOverdue ? '<div style="position: absolute; bottom: 10px; right: 10px; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">OVERDUE</div>' : ''}
+                        </div>
+                        <div class="card-body">
+                            <div class="project-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">Sector</span>
+                                    <span class="detail-value">${project.sector || 'N/A'}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Country</span>
+                                    <span class="detail-value">${project.country || 'N/A'}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Client Name</span>
+                                    <span class="detail-value">${project.client_name || 'N/A'}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Contract Amount</span>
+                                    <span class="detail-value amount-display">${formattedContractAmount}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">USD Equivalent</span>
+                                    <span class="detail-value amount-display">${formatCurrency(project.usdContractAmount)}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Status</span>
+                                    <div class="detail-value">
+                                        <div class="status-container">
+                                            <span>${project.statusText || getStatusText(project.statusEmoji)}</span>
+                                        </div>
                                     </div>
                                 </div>
+                                ${project.statusDate ? `
+                                <div class="detail-row">
+                                    <span class="detail-label">Status Date</span>
+                                    <span class="detail-value">${project.statusDate}</span>
+                                </div>
+                                ` : ''}
                             </div>
-                            ${project.statusDate ? `
-                            <div class="detail-row">
-                                <span class="detail-label">Status Date</span>
-                                <span class="detail-value">${project.statusDate}</span>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="funding-progress">
+                                <div class="funding-progress-header">
+                                    <span class="funding-progress-label">Funding Progress</span>
+                                    <span class="funding-progress-value">${fundingProgressFormatted}</span>
+                                </div>
+                                <div class="funding-progress-bar">
+                                    <div class="funding-progress-fill" style="width: ${fundingProgress}%"></div>
+                                </div>
+                                <div class="funding-details">
+                                    <span>Received: ${formatCurrency(project.usdFundReceived)}</span>
+                                    <span>Total: ${formatCurrency(project.usdContractAmount)}</span>
+                                </div>
                             </div>
-                            ` : ''}
+                            
                         </div>
-                        
-                        <div class="divider"></div>
-                        
-                        <div class="funding-progress">
-                            <div class="funding-progress-header">
-                                <span class="funding-progress-label">Funding Progress</span>
-                                <span class="funding-progress-value">${fundingProgressFormatted}</span>
+                        <div class="card-footer">
+                            <span class="project-code">${project.project_code || 'N/A'}</span>
+                            <div class="action-tracker-container">
+                                ${hasActionTracker ? `
+                                    <a href="${project.actionTrackerURL}" class="action-tracker-link" target="_blank" onclick="event.stopPropagation();">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Action Tracker
+                                    </a>
+                                ` : `
+                                    <span class="action-tracker-link" style="opacity: 0.5; cursor: default;">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        No Action Tracker
+                                    </span>
+                                `}
                             </div>
-                            <div class="funding-progress-bar">
-                                <div class="funding-progress-fill" style="width: ${fundingProgress}%"></div>
-                            </div>
-                            <div class="funding-details">
-                                <span>Received: ${formatCurrency(project.usdFundReceived)}</span>
-                                <span>Total: ${formatCurrency(project.usdContractAmount)}</span>
-                            </div>
+                            <span class="project-date">${project.awarded_year || 'N/A'}</span>
                         </div>
-                        
                     </div>
-                    <div class="card-footer">
-                        <span class="project-code">${project.projectCode || 'N/A'}</span>
-                        <span class="project-date">${project.awardedYear || 'N/A'}</span>
-                    </div>
-                </div>
                 `;
             }).join('');
 
             // Add click event listeners to all project cards
             document.querySelectorAll('.project-card').forEach(card => {
                 card.addEventListener('click', function (e) {
-                    if (!e.target.classList.contains('progress-details')) {
+                    if (!e.target.closest('.action-tracker-link')) {
+                        // Use Google Sites compatible scroll function
+                        scrollToTopForGoogleSites();
+
+                        // Then open modal immediately (no delay needed)
                         const projectId = this.getAttribute('data-project-id');
-                        const project = projects.find(p => p.sl === parseInt(projectId));
+                        const project = allData.find(p => p.sl == projectId);
                         if (project) {
-                            openProjectModal(project);
+                            // Small delay to ensure scroll happens first
+                            setTimeout(() => {
+                                openProjectModal(project);
+                            }, 100);
                         }
                     }
                 });
             });
         }
 
-        // Helper function to extract percentage from progress text
-        function getProgressPercentage(progressText) {
-            if (!progressText) return null;
-            const match = progressText.match(/(\d+)%/);
-            return match ? match[0] : null;
-        }
-
-        // Open modal with project details
-        function openProjectModal(project) {
-            modalProjectName.textContent = project.projectName || 'Unnamed Project';
-            modalClientName.textContent = project.clientName || 'N/A';
-            modalProjectCode.textContent = project.projectCode || 'N/A';
-            modalSector.textContent = project.sector || 'N/A';
-            modalCountry.textContent = project.country || 'N/A';
-            modalContractAmount.innerHTML = parseAmountString(project.contractAmount || '');
-            modalFundClaimed.innerHTML = parseAmountString(project.fundClaimed || '');
-            modalFundReceived.innerHTML = parseAmountString(project.fundReceived || '');
-            modalTotalDue.innerHTML = parseAmountString(project.totalDue || '');
-            modalTotalUSD.textContent = formatCurrency(project.totalUSD || 0);
-
-            // Set funding progress in modal
-            const fundingProgress = project.fundingProgressPercentage || 0;
-            modalFundingProgress.textContent = `${fundingProgress.toFixed(1)}%`;
-
-            modalAwardedYear.textContent = project.awardedYear || 'N/A';
-            modalDonorName.textContent = project.donorName || 'N/A';
-            modalLead.textContent = project.lead || 'N/A';
-            modalPartner.textContent = project.partner || 'N/A';
-            modalAssignedTo.textContent = project.assignedTo || 'N/A';
-            modalStartDate.textContent = project.startDate || 'N/A';
-            modalEndDate.textContent = project.endDate || 'N/A';
-            modalContractDate.textContent = project.contractSignedDate || 'N/A';
-            modalStatus.innerHTML = `${project.statusText || getStatusText(project.statusEmoji)}`;
-            modalStatusDate.textContent = project.statusDate || 'N/A';
-            modalProgress.textContent = project.currentProgress || 'N/A';
-            modalKeyRisks.textContent = project.keyRisks || 'N/A';
-            modalNextMilestone.textContent = project.nextMilestone || 'N/A';
-            modalRemarks.textContent = project.remark || 'N/A';
-            modalFooterCode.textContent = project.projectCode || 'N/A';
-
-            // Set modal header class based on status
-            let headerClass = 'default';
-            if (project.statusEmoji === '🟢') headerClass = 'on-track';
-            else if (project.statusEmoji === '🟡') headerClass = 'at-risk';
-            else if (project.statusEmoji === '🔴') headerClass = 'critical';
-
-            modalHeader.className = 'modal-header ' + headerClass;
-
-            // Set project link
-            if (project.link) {
-                modalProjectLink.href = project.link;
-                modalProjectLink.style.display = 'inline-flex';
-            } else {
-                modalProjectLink.style.display = 'none';
-            }
-
-            projectModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close modal
-        function closeModal() {
-            projectModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Helper function to get status text
-        function getStatusText(status) {
-            if (status === '🟢') return 'On Track';
-            if (status === '🟡') return 'At Risk';
-            if (status === '🔴') return 'Critical';
-            return status || 'Unknown';
-        }
-
-        // Filter projects based on search and filters
         function filterProjects() {
             const searchTerm = searchInput.value.toLowerCase();
             const statusValue = statusFilter.value;
             const sectorValue = sectorFilter.value;
             const countryValue = countryFilter.value;
 
-            filteredProjects = projects.filter(project => {
+            filteredData = allData.filter(project => {
                 const matchesSearch = !searchTerm ||
-                    (project.projectName && project.projectName.toLowerCase().includes(searchTerm)) ||
-                    (project.clientName && project.clientName.toLowerCase().includes(searchTerm)) ||
-                    (project.projectCode && project.projectCode.toLowerCase().includes(searchTerm)) ||
-                    (project.sector && project.sector.toLowerCase().includes(searchTerm));
+                    (project.project_name && project.project_name.toLowerCase().includes(searchTerm)) ||
+                    (project.client_name && project.client_name.toLowerCase().includes(searchTerm)) ||
+                    (project.project_code && project.project_code.toLowerCase().includes(searchTerm)) ||
+                    (project.sector && project.sector.toLowerCase().includes(searchTerm)) ||
+                    (project.donor_name && project.donor_name.toLowerCase().includes(searchTerm));
 
                 const matchesStatus = !statusValue || project.statusEmoji === statusValue;
                 const matchesSector = !sectorValue || project.sector === sectorValue;
@@ -2075,29 +3038,65 @@
                 return matchesSearch && matchesStatus && matchesSector && matchesCountry;
             });
 
-            displayProjects(filteredProjects);
+            displayProjects(filteredData);
             updateActiveFiltersIndicator();
         }
 
-        // Event listeners for filtering
+        function closeModal() {
+            projectModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.body.classList.remove('modal-open');
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initModalTabs();
+            fetchProjects();
+
+            // Add scroll to top button
+            const scrollTopBtn = document.createElement('button');
+            scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            scrollTopBtn.className = 'scroll-top-btn';
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            document.body.appendChild(scrollTopBtn);
+
+            // Show/hide scroll button
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+            });
+        });
+
+        // Event listeners
         searchInput.addEventListener('input', filterProjects);
         statusFilter.addEventListener('change', filterProjects);
         sectorFilter.addEventListener('change', filterProjects);
         countryFilter.addEventListener('change', filterProjects);
-
-        // Event listener for clear filters button
         clearFiltersBtn.addEventListener('click', clearAllFilters);
-
-        // Event listeners for modal
         closeModalBtn.addEventListener('click', closeModal);
+
         window.addEventListener('click', function (event) {
             if (event.target === projectModal) {
                 closeModal();
             }
         });
 
-        // Initialize
-        fetchProjects();
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && projectModal.style.display === 'block') {
+                closeModal();
+            }
+        });
+
+        // Auto-refresh every 5 minutes
+        setInterval(fetchProjects, 5 * 60 * 1000);
     </script>
 </body>
 
